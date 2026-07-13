@@ -11,7 +11,7 @@ export const TryCatch =
   ): RequestHandler =>
   async (req, res, next) => {
     try {
-      controller(req, res, next);
+      await controller(req, res, next);
     } catch (error: any) {
       if (error instanceof ErrorHandler) {
         return res.status(error.statusCode).json({
