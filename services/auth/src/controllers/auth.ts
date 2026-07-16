@@ -89,12 +89,11 @@ export const loginUser = TryCatch(async (req, res, next) => {
     LEFT JOIN skills s ON us.skill_id = s.skill_id
     WHERE u.email = ${email} GROUP BY u.user_id`;
 
-  if (!user) {
+  if (user.length <= 0) {
     throw new ErrorHandler(400, "Tài khoản không tồn tại");
   }
 
   const userObject = user[0];
-
   const matchPassword = await bcrypt.compare(password, userObject!.password);
   if (!matchPassword) {
     throw new ErrorHandler(400, "Tài khoản không tồn tại");
