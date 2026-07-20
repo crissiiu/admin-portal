@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import getBuffer from "../utils/buffer.js";
 import { sql } from "../utils/db.js";
 import ErrorHandler from "../utils/errorHandler.js";
+import { publishToTopic } from "../utils/producer.js";
+import { forgotPasswordTemplate } from "../utils/template.js";
 import { TryCatch } from "../utils/TryCatch.js";
 export const registerUser = TryCatch(async (req, res, next) => {
   const { name, email, password, phoneNumber, role, bio } = req.body;
@@ -114,5 +116,47 @@ export const loginUser = TryCatch(async (req, res, next) => {
     message: " Đăng nhập thành công",
     user: userObject,
     token,
+  });
+});
+
+export const forgotPassword = TryCatch(async (req, res, next) => {
+  const { email } = req.body;
+  if (!email) {
+    throw new ErrorHandler(400, "Email là bắt buộc");
+  }
+
+  const users =
+    await sql`SELECT user_id, email FROM users WHERE email = ${email}`;
+
+  if (users.length === 0) {
+    return res.json({
+      message: "Nếu email đã tồn tại, Chúng tôi sẽ gửi reset link",
+    });
+  }
+
+  const user = users[0];
+
+  const resetToken = jwt.sign(
+    {
+      email: user!.email,
+      type: "reset",
+    },
+    process.env.JWT_SECRET as string,
+    { expiresIn: "7d" },
+  );
+
+  const resetLink = `${process.env.FRONT_END_URL}/reset/${resetToken}`;
+
+  const message = {
+    to: email,
+    subject: "RESET Your Password - Hireheaven",
+    html: forgotPasswordTemplate(resetLink),
+  };
+
+  publishToTopic("send-mail", message).catch((error) => {
+    console.error("[auth-service] Lỗi khi gửi email", error);
+  });
+  res.json({
+    message: "Nếu email đã tồn tại, Chúng tôi sẽ gửi reset link",
   });
 });
