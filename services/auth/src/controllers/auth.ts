@@ -1,6 +1,7 @@
 import axios from "axios";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { redisClient } from "../index.js";
 import getBuffer from "../utils/buffer.js";
 import { sql } from "../utils/db.js";
 import ErrorHandler from "../utils/errorHandler.js";
@@ -145,6 +146,10 @@ export const forgotPassword = TryCatch(async (req, res, next) => {
     { expiresIn: "7d" },
   );
 
+  await redisClient.set(`forgot:${email}`, resetToken, {
+    EX: 900,
+  });
+
   const resetLink = `${process.env.FRONT_END_URL}/reset/${resetToken}`;
 
   const message = {
@@ -159,4 +164,43 @@ export const forgotPassword = TryCatch(async (req, res, next) => {
   res.json({
     message: "Nếu email đã tồn tại, Chúng tôi sẽ gửi reset link",
   });
+});
+
+export const resetPassword = TryCatch(async (req, res, next) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  let decoded: any;
+  try {
+    decoded = jwt.verify(token as string, process.env.JWT_SECRET as string);
+  } catch (error) {
+    throw new ErrorHandler(400, "Token đã hết hạn");
+  }
+
+  if (decoded.type !== "reset") {
+    throw new ErrorHandler(400, "Kiểu token không hợp lệ");
+  }
+
+  const email = decoded.email;
+  const storedToken = await redisClient.get(`forgot:${email}`);
+
+  if (!storedToken || storedToken !== token) {
+    throw new ErrorHandler(400, "Token đã hết hạn");
+  }
+
+  const users = await sql`SELECT user_id FROM users WHERE email=${email}`;
+
+  if (users.length === 0) {
+    throw new ErrorHandler(404, "Không tìm thấy người dùng");
+  }
+
+  const user = users[0];
+
+  const hashPassword = await bcrypt.hash(password, 10);
+
+  await sql`UPDATE users SET password=${hashPassword} WHERE user_id=${user!.id}`;
+
+  await redisClient.del(`forgot:${email}`);
+
+  res.json({ message: "Mật khẩu đã được thay đổi" });
 });

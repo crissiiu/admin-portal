@@ -1,8 +1,18 @@
 import dotenv from "dotenv";
+import { createClient } from "redis";
 import app from "./app.js";
 import { sql } from "./utils/db.js";
 
 dotenv.config();
+
+export const redisClient = createClient({
+  url: process.env.REDIS_URL as string,
+});
+
+redisClient
+  .connect()
+  .then(() => console.log("Đã kết nối với Redis"))
+  .catch(console.error);
 
 async function initDb() {
   try {
@@ -43,7 +53,9 @@ async function initDb() {
       skill_id INTEGER NOT NULL REFERENCES skills(skill_id) ON DELETE CASCADE,
       PRIMARY KEY (user_id, skill_id)
     )`;
-    console.log("✅ [auth-service] Database tables checked/created successfully");
+    console.log(
+      "✅ [auth-service] Database tables checked/created successfully",
+    );
   } catch (error) {
     console.error("❌ [auth-service] Error initializing database", error);
     process.exit(1);
