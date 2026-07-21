@@ -1,6 +1,6 @@
+import dotenv from "dotenv";
 import { Kafka } from "kafkajs";
 import nodemailer from "nodemailer";
-import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -32,8 +32,8 @@ export const startSendMailConsumer = async () => {
             port: 465,
             secure: true,
             auth: {
-              user: "crissiiu.dev@gmail.com",
-              pass: "oucgojlbceplkqgr",
+              user: process.env.SMTP_USER as string,
+              pass: process.env.SMTP_PASS as string,
             },
           });
 
