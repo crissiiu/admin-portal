@@ -31,3 +31,29 @@ export const getUserProfile = TryCatch(
     res.json({ user });
   },
 );
+
+export const updateUserProfile = TryCatch(
+  async (req: AuthenticatedRequest, res, next) => {
+    const user = req.user;
+
+    if (!user) {
+      throw new ErrorHandler(401, "Authenticaiton required");
+    }
+
+    const { name, phoneNumber, bio } = req.body;
+
+    const newName = name || user.name;
+    const newPhoneNumber = phoneNumber || user.phone_number;
+    const newBio = bio || user.bio;
+
+    const updateUser =
+      await sql`UPDATE users SET name=${newName}, phone_number=${newPhoneNumber}, bio=${newBio}
+    WHERE user_id = ${user.user_id}
+    RETURNING user_id, name, email, phone_number, bio`;
+
+    res.json({
+      message: "Thông tin người dùng đã được cập nhật",
+      updateUser,
+    });
+  },
+);

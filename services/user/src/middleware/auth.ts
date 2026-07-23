@@ -65,8 +65,6 @@ export const isAuth = async (
 
     const user = users[0] as User;
 
-    console.log(user);
-
     user.skills = user.skills || [];
 
     req.user = user;
