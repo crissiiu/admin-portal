@@ -1,4 +1,6 @@
+import axios from "axios";
 import { AuthenticatedRequest } from "../middleware/auth.js";
+import getBuffer from "../utils/buffer.js";
 import { sql } from "../utils/db.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import { TryCatch } from "../utils/TryCatch.js";
@@ -54,6 +56,90 @@ export const updateUserProfile = TryCatch(
     res.json({
       message: "Thông tin người dùng đã được cập nhật",
       updateUser,
+    });
+  },
+);
+
+export const udpateProfilePic = TryCatch(
+  async (req: AuthenticatedRequest, res, next) => {
+    const user = req.user;
+
+    if (!user) {
+      throw new ErrorHandler(401, "Authenticaiton required");
+    }
+
+    const file = req.file;
+
+    if (!file) {
+      throw new ErrorHandler(401, "Không tìm thấy hình ảnh");
+    }
+
+    const oldPulicId = user.profile_pic_public_id;
+
+    const fileBuffer = getBuffer(file);
+
+    if (!fileBuffer || !fileBuffer.content) {
+      throw new ErrorHandler(500, "Lỗi khi tạo ra dữ liệu đệm");
+    }
+
+    const { data: updateResult } = await axios.post(
+      `${process.env.UPLOAD_SERVICE}/api/utils/upload`,
+      {
+        buffer: fileBuffer.content,
+        public_id: oldPulicId,
+      },
+    );
+
+    const [updatedUser] = await sql`
+    UPDATE users SET profile_pic=${updateResult.url}, profile_pic_public_id=${updateResult.public_id}
+    WHERE user_id=${user.user_id} 
+    RETURNING user_id, name, profile_pic`;
+
+    res.json({
+      message: "Cập nhật ảnh đại diện thành công",
+      updatedUser,
+    });
+  },
+);
+
+export const udpateProfileResumer = TryCatch(
+  async (req: AuthenticatedRequest, res, next) => {
+    const user = req.user;
+
+    if (!user) {
+      throw new ErrorHandler(401, "Authenticaiton required");
+    }
+
+    const file = req.file;
+
+    if (!file) {
+      throw new ErrorHandler(401, "Không tìm thấy CV");
+    }
+
+    const oldResumerId = user.resume_public_id;
+
+    const fileBuffer = getBuffer(file);
+
+    if (!fileBuffer || !fileBuffer.content) {
+      throw new ErrorHandler(500, "Lỗi khi tạo ra dữ liệu đệm");
+    }
+
+    const { data: updateResult } = await axios.post(
+      `${process.env.UPLOAD_SERVICE}/api/utils/upload`,
+      {
+        buffer: fileBuffer.content,
+        public_id: oldResumerId,
+      },
+    );
+
+    const [updatedUser] = await sql`
+    UPDATE users SET resume=${updateResult.url}, resume_public_id=${updateResult.public_id}
+    WHERE user_id=${user.user_id} 
+    RETURNING user_id, name, resume`;
+
+    res.json({
+      message: "Cập nhật ảnh CV thành công",
+      updatedUser,
     });
   },
 );
