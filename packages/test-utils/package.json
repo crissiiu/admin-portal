@@ -1,0 +1,14 @@
+{
+  "name": "@job-portal/test-utils",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@testing-library/react": "16.3.2",
+    "vitest": "4.1.11"
+  }
+}
+
