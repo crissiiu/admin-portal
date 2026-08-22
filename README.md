@@ -1,8 +1,10 @@
-# Job Portal
+# Sales Builder
 
-Backend/CMS monorepo for the job portal project.
+Monorepo cho website bán hàng/e-commerce. Mục tiêu của dự án là xây dựng một nền tảng có thể bán sản phẩm online, quản lý nội dung storefront, sản phẩm, giỏ hàng, đơn hàng, khách hàng và vận hành bán hàng cơ bản.
 
-The backend is structured from `docs/architecture/backend-microservice-structure.md`:
+Kế hoạch xây dựng chính nằm trong `PROJECT_BUILD_FLOW.md`.
+
+Cấu trúc kỹ thuật hiện tại:
 
 - `services/*` contains independently buildable microservices.
 - `packages/*` contains shared technical packages only.
