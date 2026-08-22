@@ -1,0 +1,37 @@
+packages:
+  - "apps/*"
+  - "services/api-gateway"
+  - "services/auth-service"
+  - "services/user-service"
+  - "services/job-service"
+  - "packages/api-contracts"
+  - "packages/config"
+  - "packages/design-tokens"
+  - "packages/logger"
+  - "packages/errors"
+  - "packages/eslint-config"
+  - "packages/feature-flags"
+  - "packages/message-bus"
+  - "packages/telemetry"
+  - "packages/test-utils"
+  - "packages/typescript-config"
+  - "packages/ui"
+allowBuilds:
+  bcrypt: true
+  esbuild: true
+  unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@next/env@16.3.2'
+  - '@next/eslint-plugin-next@16.3.2'
+  - '@next/swc-darwin-arm64@16.3.2'
+  - '@next/swc-darwin-x64@16.3.2'
+  - '@next/swc-linux-arm64-gnu@16.3.2'
+  - '@next/swc-linux-arm64-musl@16.3.2'
+  - '@next/swc-linux-x64-gnu@16.3.2'
+  - '@next/swc-linux-x64-musl@16.3.2'
+  - '@next/swc-win32-arm64-msvc@16.3.2'
+  - '@next/swc-win32-x64-msvc@16.3.2'
+  - eslint-config-next@16.3.2
+  - eslint@9.39.5
+  - next@16.3.2
+  - react-hook-form@7.86.0

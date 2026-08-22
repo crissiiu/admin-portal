@@ -1,0 +1,14 @@
+{
+  "extends": "@job-portal/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@job-portal/ui": ["../../packages/ui/src/index.ts"],
+      "@job-portal/api-contracts": ["../../packages/api-contracts/src/index.ts"],
+      "@job-portal/feature-flags": ["../../packages/feature-flags/src/index.ts"],
+      "@job-portal/telemetry": ["../../packages/telemetry/src/index.ts"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

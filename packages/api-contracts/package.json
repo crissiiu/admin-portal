@@ -1,0 +1,22 @@
+{
+  "name": "@job-portal/api-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "devDependencies": {
+    "@job-portal/eslint-config": "workspace:*",
+    "@job-portal/typescript-config": "workspace:*",
+    "eslint": "9.39.5",
+    "typescript": "6.0.3",
+    "zod": "4.4.3"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "echo \"No api-contract tests yet\"",
+    "typecheck": "tsc --noEmit"
+  }
+}
