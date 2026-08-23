@@ -1,14 +1,13 @@
 import { AppError } from "@job-portal/errors";
 import type { AuthUserRepository } from "../../domain/repositories/auth-user.repository.js";
 import type { PasswordService } from "../services/password.service.js";
-import { AuthUser, type AuthRole } from "../../domain/entities/auth-user.entity.js";
+import { AuthUser } from "../../domain/entities/auth-user.entity.js";
 
 export type RegisterInput = {
   name: string;
   email: string;
   password: string;
   phoneNumber: string;
-  role: AuthRole;
 };
 
 export class RegisterUseCase {
@@ -17,6 +16,7 @@ export class RegisterUseCase {
     private readonly passwordService: PasswordService
   ) {}
 
+  /** Đăng ký tài khoản storefront public và không nhận role đặc quyền từ request. */
   async execute(input: RegisterInput) {
     const existing = await this.users.findByEmail(input.email);
     if (existing) {
@@ -24,7 +24,7 @@ export class RegisterUseCase {
     }
 
     const passwordHash = await this.passwordService.hash(input.password);
-    const user = AuthUser.create({ ...input, passwordHash });
+    const user = AuthUser.create({ ...input, role: "customer_registered", passwordHash });
     await this.users.save(user);
 
     return user;
