@@ -5,6 +5,7 @@ packages:
   - "services/user-service"
   - "services/job-service"
   - "packages/api-contracts"
+  - "packages/auth-contracts"
   - "packages/config"
   - "packages/design-tokens"
   - "packages/logger"

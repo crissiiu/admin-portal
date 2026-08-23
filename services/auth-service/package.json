@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@job-portal/config": "workspace:0.1.0",
+    "@job-portal/auth-contracts": "workspace:0.1.0",
     "@job-portal/errors": "workspace:0.1.0",
     "@job-portal/logger": "workspace:0.1.0",
     "@job-portal/message-bus": "workspace:0.1.0",

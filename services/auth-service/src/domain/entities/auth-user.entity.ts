@@ -1,4 +1,6 @@
-export type AuthRole = "candidate" | "employer" | "admin";
+import type { Role } from "@job-portal/auth-contracts";
+
+export type AuthRole = Exclude<Role, "guest" | "customer_guest_checkout">;
 
 export class AuthUser {
   private constructor(
@@ -11,11 +13,12 @@ export class AuthUser {
     public readonly createdAt: string
   ) {}
 
+  /** Tạo định danh auth và mặc định đăng ký public là tài khoản khách hàng. */
   static create(input: {
     name: string;
     email: string;
     phoneNumber: string;
-    role: AuthRole;
+    role?: AuthRole;
     passwordHash: string;
   }) {
     return new AuthUser(
@@ -23,7 +26,7 @@ export class AuthUser {
       input.name,
       input.email.toLowerCase(),
       input.phoneNumber,
-      input.role,
+      input.role ?? "customer_registered",
       input.passwordHash,
       new Date().toISOString()
     );

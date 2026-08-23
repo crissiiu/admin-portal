@@ -12,6 +12,12 @@
       "sourceType": "github",
       "skillPath": "skills/frontend-patterns/SKILL.md",
       "computedHash": "cda7d74619e78bc6c58e7f7f4fa7a9d831ec71ae4629550e4d7b53876692e4d3"
+    },
+    "saas-multi-tenant": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "skillPath": "cli-tool/components/skills/development/saas-multi-tenant/SKILL.md",
+      "computedHash": "f1589ad0533fae4b741fe6e19b9b96fbe7a2de9101731a42fe259a980b906dbe"
     }
   }
 }

@@ -344,6 +344,21 @@ importers:
         specifier: 4.4.3
         version: 4.4.3
 
+  packages/auth-contracts:
+    devDependencies:
+      '@job-portal/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@job-portal/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      eslint:
+        specifier: 9.39.5
+        version: 9.39.5(jiti@2.7.0)(supports-color@10.2.2)
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+
   packages/config:
     dependencies:
       dotenv:
@@ -534,6 +549,9 @@ importers:
 
   services/auth-service:
     dependencies:
+      '@job-portal/auth-contracts':
+        specifier: workspace:0.1.0
+        version: link:../../packages/auth-contracts
       '@job-portal/config':
         specifier: workspace:0.1.0
         version: link:../../packages/config
