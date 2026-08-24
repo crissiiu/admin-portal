@@ -13,6 +13,12 @@
       "skillPath": "skills/frontend-patterns/SKILL.md",
       "computedHash": "cda7d74619e78bc6c58e7f7f4fa7a9d831ec71ae4629550e4d7b53876692e4d3"
     },
+    "mysql-patterns": {
+      "source": "affaan-m/ECC",
+      "sourceType": "github",
+      "skillPath": "skills/mysql-patterns/SKILL.md",
+      "computedHash": "b65108a285e00639f5e3e5acffa942d79a1a823ecc843f8c8f062cffea3f4576"
+    },
     "saas-multi-tenant": {
       "source": "davila7/claude-code-templates",
       "sourceType": "github",
