@@ -1,0 +1,56 @@
+USE sales_builder_user;
+
+CREATE TABLE IF NOT EXISTS customers (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    tenant_id BIGINT UNSIGNED NOT NULL,
+    user_id BIGINT UNSIGNED NULL,
+    email VARCHAR(255) NULL,
+    phone VARCHAR(32) NULL,
+    first_name VARCHAR(120) NULL,
+    last_name VARCHAR(120) NULL,
+    customer_type VARCHAR(64) NOT NULL DEFAULT 'registered',
+    status VARCHAR(32) NOT NULL DEFAULT 'active',
+    loyalty_tier VARCHAR(64) NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME NULL,
+    delete_requested_at DATETIME NULL,
+    delete_after DATETIME NULL,
+    deleted_by_user_id BIGINT UNSIGNED NULL,
+    delete_reason VARCHAR(255) NULL,
+    PRIMARY KEY (id),
+    KEY idx_customers_tenant_email (tenant_id, email),
+    KEY idx_customers_tenant_phone (tenant_id, phone),
+    KEY idx_customers_user (user_id),
+    KEY idx_customers_type (tenant_id, customer_type),
+    KEY idx_customers_deleted_after (tenant_id, deleted_at, delete_after)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS shipping_addresses (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    tenant_id BIGINT UNSIGNED NOT NULL,
+    customer_id BIGINT UNSIGNED NOT NULL,
+    recipient_name VARCHAR(255) NOT NULL,
+    phone VARCHAR(32) NOT NULL,
+    address_line1 VARCHAR(255) NOT NULL,
+    address_line2 VARCHAR(255) NULL,
+    ward VARCHAR(120) NULL,
+    district VARCHAR(120) NULL,
+    city VARCHAR(120) NOT NULL,
+    country_code CHAR(2) NOT NULL DEFAULT 'VN',
+    postal_code VARCHAR(32) NULL,
+    is_default BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME NULL,
+    delete_requested_at DATETIME NULL,
+    delete_after DATETIME NULL,
+    deleted_by_user_id BIGINT UNSIGNED NULL,
+    delete_reason VARCHAR(255) NULL,
+    PRIMARY KEY (id),
+    KEY idx_shipping_addresses_customer (tenant_id, customer_id),
+    KEY idx_shipping_addresses_default (customer_id, is_default),
+    KEY idx_shipping_addresses_deleted_after (tenant_id, deleted_at, delete_after),
+    CONSTRAINT fk_shipping_addresses_customer
+        FOREIGN KEY (customer_id) REFERENCES customers (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

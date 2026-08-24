@@ -1,14 +1,27 @@
 services:
-  postgres:
-    image: postgres:17.7-alpine
+  mysql:
+    image: mysql:8.4
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: job_portal
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: sales_builder
+      MYSQL_PASSWORD: sales_builder
+      MYSQL_DATABASE: sales_builder_auth
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - mysql-data:/var/lib/mysql
+      - ./mysql/init/01-create-service-databases.sql:/docker-entrypoint-initdb.d/01-create-service-databases.sql:ro
+      - ../../services/auth-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/02-auth-service.sql:ro
+      - ../../services/user-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/03-user-service.sql:ro
+      - ../../services/product-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/04-product-service.sql:ro
+      - ../../services/catalog-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/05-catalog-service.sql:ro
+      - ../../services/inventory-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/06-inventory-service.sql:ro
+      - ../../services/cart-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/07-cart-service.sql:ro
+      - ../../services/order-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/08-order-service.sql:ro
+      - ../../services/payment-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/09-payment-service.sql:ro
+      - ../../services/discount-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/10-discount-service.sql:ro
+      - ../../services/content-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/11-content-service.sql:ro
+      - ../../services/audit-log-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/12-audit-log-service.sql:ro
 
   redis:
     image: redis:8.4.0-alpine
@@ -31,4 +44,4 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
 
 volumes:
-  postgres-data:
+  mysql-data:
