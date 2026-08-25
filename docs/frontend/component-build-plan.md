@@ -40,6 +40,10 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 - [x] Đã export `FormField` từ `packages/ui/src/index.ts`.
 - [x] Đã có Storybook story cho FormField.
 - [x] Đã có MDX docs cho FormField.
+- [x] Đã có component `Card`, `CardHeader`, `CardContent`, `CardFooter`, `FeatureCard` trong `packages/ui/src/components/card`.
+- [x] Đã export Card components từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho Card.
+- [x] Đã có MDX docs cho Card.
 - [ ] Chưa hoàn thiện wrapper Ant Design cho tất cả component.
 - [ ] Chưa có MDX docs cho toàn bộ component.
 - [ ] Chưa có Chromatic hoặc visual regression workflow.
@@ -160,8 +164,19 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 
 ### 5. [ ] Card
 
-- [ ] Chưa implement.
+- [x] Đã implement wrapper dùng AntD Card.
+- [x] Đã hỗ trợ compound sections `CardHeader`, `CardContent`, `CardFooter`.
+- [x] Đã thêm `FeatureCard` kiểu media trái, content phải, icon badge, title, description và CTA.
+- [x] Đã hỗ trợ variant `default`, `outlined`, `elevated`, `accent`, `interactive`.
+- [x] Đã giữ radius 8px theo design system.
+- [x] Đã có Storybook stories: playground, feature media card, variants, metric card, job card, accent card, with actions.
+- [x] Đã có MDX docs cho cách dùng Card và variants.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [ ] Chưa có visual regression cho Card.
 - Công nghệ: AntD Card wrapper, React, TypeScript.
+- API: `variant`, AntD Card props, `CardHeader`, `CardContent`, `CardFooter`, `FeatureCard`.
+- Check: spacing ổn định; không lồng card trong card; hover state chỉ dùng cho interactive item; action footer căn phải và không làm lệch layout.
 
 ### 6. [ ] Alert
 
