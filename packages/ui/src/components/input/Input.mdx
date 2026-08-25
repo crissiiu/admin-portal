@@ -1,0 +1,57 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as InputStories from "./Input.stories";
+
+<Meta of={InputStories} />
+
+# Input
+
+`Input` là wrapper cho Ant Design Input, dùng cho text field cơ bản trong form và bộ lọc. Component hỗ trợ `label`, `helperText`, `error`, `required`, prefix/suffix icon, disabled, status và các size của AntD.
+
+## Khi Nào Dùng
+
+- Dùng `Input` cho text, email, search hoặc numeric input đơn giản.
+- Dùng `PasswordInput` cho mật khẩu.
+- Dùng `Textarea` cho nội dung nhiều dòng.
+- Dùng `error` khi cần hiển thị lỗi validation; component tự set `status="error"` và `aria-invalid`.
+- Dùng `helperText` cho hướng dẫn ngắn, không đặt nội dung quá dài dưới field.
+
+## Playground
+
+<Canvas of={InputStories.Playground} />
+
+## Label Và Helper Text
+
+<Canvas of={InputStories.WithLabelAndHelper} />
+
+## Required
+
+<Canvas of={InputStories.Required} />
+
+## Error State
+
+<Canvas of={InputStories.ErrorState} />
+
+## Prefix/Suffix
+
+<Canvas of={InputStories.WithPrefixSuffix} />
+
+## Sizes
+
+<Canvas of={InputStories.Sizes} />
+
+## Password
+
+<Canvas of={InputStories.Password} />
+
+## Textarea
+
+<Canvas of={InputStories.TextareaExample} />
+
+## Form Group
+
+<Canvas of={InputStories.FormGroup} />
+
+## Props
+
+<Controls of={InputStories.Playground} />

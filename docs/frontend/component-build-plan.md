@@ -32,6 +32,10 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 - [x] Đã export `IconButton` từ `packages/ui/src/index.ts`.
 - [x] Đã có Storybook story cho IconButton.
 - [x] Đã có MDX docs cho IconButton.
+- [x] Đã có component `Input`, `PasswordInput`, `Textarea` trong `packages/ui/src/components/input`.
+- [x] Đã export `Input`, `PasswordInput`, `Textarea` từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho Input.
+- [x] Đã có MDX docs cho Input.
 - [ ] Chưa hoàn thiện wrapper Ant Design cho tất cả component.
 - [ ] Chưa có MDX docs cho toàn bộ component.
 - [ ] Chưa có Chromatic hoặc visual regression workflow.
@@ -118,8 +122,20 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 
 ### 3. [ ] Input
 
-- [ ] Chưa implement.
+- [x] Đã implement wrapper dùng AntD Input.
+- [x] Đã hỗ trợ `label`, `helperText`, `error`, `required`.
+- [x] Đã hỗ trợ prefix/suffix icon, disabled, status và size `small`, `middle`, `large`.
+- [x] Đã có `PasswordInput` dùng AntD `Input.Password`.
+- [x] Đã có `Textarea` dùng AntD `Input.TextArea`.
+- [x] Đã tự set `status="error"` và `aria-invalid` khi có `error`.
+- [x] Đã có Storybook stories: playground, label/helper, required, error, prefix/suffix, sizes, password, textarea, form group.
+- [x] Đã có MDX docs cho cách dùng Input.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [ ] Chưa có visual regression cho Input.
 - Công nghệ: AntD Input, React, TypeScript, design tokens.
+- API: `label`, `helperText`, `error`, `required`, `prefix`, `suffix`, `size`, `status`, `disabled`.
+- Check: label liên kết đúng với input; error hiển thị rõ; `aria-invalid` đúng khi lỗi; prefix/suffix không làm lệch chiều cao.
 
 ### 4. [ ] FormField
 
