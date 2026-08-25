@@ -21,11 +21,25 @@ export class LoginUseCase {
       throw new AppError(401, "Invalid credentials", "AUTH_INVALID_CREDENTIALS");
     }
 
+    if (!user.passwordHash) {
+      throw new AppError(401, "Invalid credentials", "AUTH_INVALID_CREDENTIALS");
+    }
+
     const validPassword = await this.passwordService.compare(input.password, user.passwordHash);
     if (!validPassword) {
       throw new AppError(401, "Invalid credentials", "AUTH_INVALID_CREDENTIALS");
     }
 
-    return { user, token: this.tokenService.sign({ sub: user.id, role: user.role }) };
+    return {
+      user,
+      token: this.tokenService.sign({
+        sub: user.id,
+        sid: crypto.randomUUID(),
+        actorType: user.actorType,
+        roles: [user.role],
+        tenantId: user.tenantId ?? undefined,
+        phoneVerified: Boolean(user.phoneVerifiedAt)
+      })
+    };
   }
 }
