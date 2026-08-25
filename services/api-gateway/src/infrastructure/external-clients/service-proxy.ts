@@ -22,7 +22,7 @@ export class ServiceProxy {
     const body = await response.text();
     return {
       status: response.status,
-      headers: { "content-type": response.headers.get("content-type") ?? "application/json" },
+      headers: this.responseHeaders(response),
       body
     };
   }
@@ -30,12 +30,41 @@ export class ServiceProxy {
   private forwardHeaders(req: Request) {
     const requestId = req.headers["x-request-id"];
     const authorization = req.headers.authorization;
+    const cookie = req.headers.cookie;
     const headers: Record<string, string> = { "content-type": "application/json" };
+    const actorHeaders = [
+      "x-actor-id",
+      "x-actor-type",
+      "x-actor-roles",
+      "x-tenant-id",
+      "x-session-id",
+      "x-request-id"
+    ];
 
     if (requestId) headers["x-request-id"] = requestId.toString();
     if (authorization) headers.authorization = authorization;
+    if (cookie) headers.cookie = cookie;
+    for (const header of actorHeaders) {
+      const value = req.headers[header];
+      if (value) headers[header] = value.toString();
+    }
     if (!req.method) throw new AppError(400, "Invalid request method", "GATEWAY_INVALID_METHOD");
 
+    return headers;
+  }
+
+  private responseHeaders(response: Response) {
+    const headers: Record<string, string | string[]> = {
+      "content-type": response.headers.get("content-type") ?? "application/json"
+    };
+    const getSetCookie = (response.headers as Headers & { getSetCookie?: () => string[] }).getSetCookie;
+    const setCookies = getSetCookie?.call(response.headers);
+    if (setCookies?.length) {
+      headers["set-cookie"] = setCookies;
+    } else {
+      const setCookie = response.headers.get("set-cookie");
+      if (setCookie) headers["set-cookie"] = setCookie;
+    }
     return headers;
   }
 }

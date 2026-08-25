@@ -12,16 +12,17 @@ services:
       - mysql-data:/var/lib/mysql
       - ./mysql/init/01-create-service-databases.sql:/docker-entrypoint-initdb.d/01-create-service-databases.sql:ro
       - ../../services/auth-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/02-auth-service.sql:ro
-      - ../../services/user-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/03-user-service.sql:ro
-      - ../../services/product-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/04-product-service.sql:ro
-      - ../../services/catalog-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/05-catalog-service.sql:ro
-      - ../../services/inventory-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/06-inventory-service.sql:ro
-      - ../../services/cart-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/07-cart-service.sql:ro
-      - ../../services/order-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/08-order-service.sql:ro
-      - ../../services/payment-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/09-payment-service.sql:ro
-      - ../../services/discount-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/10-discount-service.sql:ro
-      - ../../services/content-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/11-content-service.sql:ro
-      - ../../services/audit-log-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/12-audit-log-service.sql:ro
+      - ../../services/auth-service/database/migrations/0002_auth_runtime_schema.sql:/docker-entrypoint-initdb.d/03-auth-runtime.sql:ro
+      - ../../services/user-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/04-user-service.sql:ro
+      - ../../services/product-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/05-product-service.sql:ro
+      - ../../services/catalog-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/06-catalog-service.sql:ro
+      - ../../services/inventory-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/07-inventory-service.sql:ro
+      - ../../services/cart-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/08-cart-service.sql:ro
+      - ../../services/order-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/09-order-service.sql:ro
+      - ../../services/payment-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/10-payment-service.sql:ro
+      - ../../services/discount-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/11-discount-service.sql:ro
+      - ../../services/content-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/12-content-service.sql:ro
+      - ../../services/audit-log-service/database/migrations/0001_initial_schema.sql:/docker-entrypoint-initdb.d/13-audit-log-service.sql:ro
 
   redis:
     image: redis:8.4.0-alpine
