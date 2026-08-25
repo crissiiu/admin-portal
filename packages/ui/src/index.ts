@@ -1,4 +1,5 @@
 export { Button, type ButtonProps } from "./components/button";
+export { IconButton, type IconButtonProps } from "./components/icon-button";
 export { cn } from "./lib/cn";
 export {
   createThemeCssText,

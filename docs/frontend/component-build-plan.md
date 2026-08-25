@@ -28,6 +28,10 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 - [x] Đã có Storybook cho `packages/ui`.
 - [x] Đã có Storybook story cho Button.
 - [x] Đã có MDX docs cho Button.
+- [x] Đã có component `IconButton` trong `packages/ui/src/components/icon-button`.
+- [x] Đã export `IconButton` từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho IconButton.
+- [x] Đã có MDX docs cho IconButton.
 - [ ] Chưa hoàn thiện wrapper Ant Design cho tất cả component.
 - [ ] Chưa có MDX docs cho toàn bộ component.
 - [ ] Chưa có Chromatic hoặc visual regression workflow.
@@ -99,8 +103,18 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 
 ### 2. [ ] IconButton
 
-- [ ] Chưa implement.
+- [x] Đã implement wrapper dùng `Button` và AntD Tooltip.
+- [x] Đã yêu cầu `label` để tạo `aria-label`.
+- [x] Đã hỗ trợ `tooltip`, `icon`, `size`, `variant`, `loading`, `disabled`.
+- [x] Đã giữ kích thước vuông ổn định theo size `sm`, `md`, `lg`.
+- [x] Đã có Storybook stories: playground, variants, sizes, states, toolbar, without tooltip.
+- [x] Đã có MDX docs cho accessibility và ví dụ dùng.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [ ] Chưa có visual regression cho IconButton.
 - Công nghệ: AntD Button wrapper, React, TypeScript, Tailwind/CSS-in-JS, lucide-react.
+- API: `icon`, `label`, `tooltip`, `variant`, `size`, `loading`, `disabled`.
+- Check: luôn có accessible label; icon căn giữa; vùng click vuông; tooltip hiển thị đúng label; disabled/loading không trigger thao tác.
 
 ### 3. [ ] Input
 
