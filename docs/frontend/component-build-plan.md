@@ -36,6 +36,10 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 - [x] Đã export `Input`, `PasswordInput`, `Textarea` từ `packages/ui/src/index.ts`.
 - [x] Đã có Storybook story cho Input.
 - [x] Đã có MDX docs cho Input.
+- [x] Đã có component `FormField` trong `packages/ui/src/components/form-field`.
+- [x] Đã export `FormField` từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho FormField.
+- [x] Đã có MDX docs cho FormField.
 - [ ] Chưa hoàn thiện wrapper Ant Design cho tất cả component.
 - [ ] Chưa có MDX docs cho toàn bộ component.
 - [ ] Chưa có Chromatic hoặc visual regression workflow.
@@ -139,8 +143,20 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 
 ### 4. [ ] FormField
 
-- [ ] Chưa implement.
+- [x] Đã implement wrapper generic cho label, helper text, error message và aria wiring.
+- [x] Đã hỗ trợ render-prop để truyền `fieldProps` vào control con.
+- [x] Đã tự tạo `id`, `aria-describedby`, `aria-invalid`, `aria-required`.
+- [x] Đã hỗ trợ `label`, `helperText`, `error`, `required`, `optionalText`.
+- [x] Đã compose được với `Input`, `PasswordInput`, `Textarea` và custom control.
+- [x] Đã có Storybook stories: playground, required, error, optional, password, textarea, search, form example.
+- [x] Đã có MDX docs cho cách dùng render-prop và accessibility.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [ ] Chưa tích hợp React Hook Form hoặc AntD Form ở mức adapter.
+- [ ] Chưa có visual regression cho FormField.
 - Công nghệ: AntD Form hoặc React Hook Form, Zod / Valibot / Yup.
+- API: `label`, `helperText`, `error`, `required`, `optionalText`, `children`.
+- Check: label trỏ đúng control; message id được gắn vào `aria-describedby`; error set `aria-invalid`; control custom nhận được `fieldProps`.
 
 ### 5. [ ] Card
 

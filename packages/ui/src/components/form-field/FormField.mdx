@@ -1,0 +1,49 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as FormFieldStories from "./FormField.stories";
+
+<Meta of={FormFieldStories} />
+
+# FormField
+
+`FormField` là wrapper chung cho label, helper text, error message và aria wiring của form control. Component này không khóa vào một input cụ thể, nên có thể dùng với `Input`, `PasswordInput`, `Textarea`, Select hoặc custom control.
+
+## Cách Dùng
+
+`children` có thể là React node bình thường hoặc render function. Khi dùng render function, component truyền `fieldProps` gồm `id`, `aria-describedby`, `aria-invalid` và `aria-required` để gắn vào control bên trong.
+
+## Playground
+
+<Canvas of={FormFieldStories.Playground} />
+
+## Required
+
+<Canvas of={FormFieldStories.Required} />
+
+## Error State
+
+<Canvas of={FormFieldStories.ErrorState} />
+
+## Optional
+
+<Canvas of={FormFieldStories.Optional} />
+
+## Password
+
+<Canvas of={FormFieldStories.Password} />
+
+## Textarea
+
+<Canvas of={FormFieldStories.TextareaField} />
+
+## Search
+
+<Canvas of={FormFieldStories.SearchField} />
+
+## Form Example
+
+<Canvas of={FormFieldStories.FormExample} />
+
+## Props
+
+<Controls of={FormFieldStories.Playground} />
