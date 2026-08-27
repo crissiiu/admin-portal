@@ -5,6 +5,7 @@ import { Button as AntdButton, type ButtonProps as AntdButtonProps } from "antd"
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ButtonHTMLAttributes, CSSProperties, MouseEvent, ReactNode } from "react";
 
+import { Loading, type LoadingTone } from "../loading";
 import { cn } from "../../lib/cn";
 
 const buttonVariants = cva(
@@ -52,6 +53,22 @@ const antdButtonSizes = {
   md: "middle",
   lg: "large"
 } as const;
+
+const loadingSizes = {
+  sm: "sm",
+  md: "sm",
+  lg: "md"
+} as const;
+
+const loadingTones: Record<NonNullable<ButtonProps["variant"]>, LoadingTone> = {
+  primary: "primary",
+  secondary: "neutral",
+  outline: "primary",
+  ghost: "neutral",
+  danger: "inverse",
+  success: "inverse",
+  link: "primary"
+};
 
 type NativeButtonType = ButtonHTMLAttributes<HTMLButtonElement>["type"];
 
@@ -102,9 +119,13 @@ export function Button({
       : style;
   const content = (
     <>
-      {leftIcon ? <span aria-hidden="true">{leftIcon}</span> : null}
+      {loading ? (
+        <Loading aria-hidden="true" size={loadingSizes[size ?? "md"]} tone={loadingTones[variant ?? "primary"]} />
+      ) : leftIcon ? (
+        <span aria-hidden="true">{leftIcon}</span>
+      ) : null}
       {children}
-      {rightIcon ? <span aria-hidden="true">{rightIcon}</span> : null}
+      {!loading && rightIcon ? <span aria-hidden="true">{rightIcon}</span> : null}
     </>
   );
 
@@ -141,7 +162,6 @@ export function Button({
       className={cn(buttonVariants({ className, size, variant }))}
       disabled={isDisabled}
       htmlType={type}
-      loading={loading}
       onClick={handleClick}
       size={antdButtonSizes[size ?? "md"]}
       style={buttonStyle}

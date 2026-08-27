@@ -21,6 +21,11 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 - [x] Đã có CSS Variables cho theme động light/dark.
 - [x] Đã có `UiThemeProvider` bọc AntD `ConfigProvider`.
 - [x] Đã có component `Button` base trong `packages/ui/src/components/button`.
+- [x] Đã có component `Loading` dùng chung trong `packages/ui/src/components/loading`.
+- [x] Đã export `Loading` từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho Loading.
+- [x] Đã có MDX docs cho Loading.
+- [x] Đã chuyển `Button`, `IconButton`, `DataTable`, `DataList` sang dùng loading indicator chung.
 - [x] Đã export `Button` từ `packages/ui/src/index.ts`.
 - [x] Đã chuyển `Button` sang AntD wrapper và giữ tương thích API cũ.
 - [x] Đã gắn `UiThemeProvider` và `Button` vào `apps/candidate-web`.
@@ -44,6 +49,22 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 - [x] Đã export Card components từ `packages/ui/src/index.ts`.
 - [x] Đã có Storybook story cho Card.
 - [x] Đã có MDX docs cho Card.
+- [x] Đã có component `Alert` trong `packages/ui/src/components/alert`.
+- [x] Đã export `Alert` từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho Alert.
+- [x] Đã có MDX docs cho Alert.
+- [x] Đã có component `Modal` và alias `Dialog` trong `packages/ui/src/components/modal`.
+- [x] Đã export `Modal`, `Dialog` từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho Modal/Dialog.
+- [x] Đã có MDX docs cho Modal/Dialog.
+- [x] Đã có component `Tabs` trong `packages/ui/src/components/tabs`.
+- [x] Đã export `Tabs` từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho Tabs.
+- [x] Đã có MDX docs cho Tabs.
+- [x] Đã có component `DataTable` và `DataList` trong `packages/ui/src/components/data-table`.
+- [x] Đã export `DataTable`, `DataList` từ `packages/ui/src/index.ts`.
+- [x] Đã có Storybook story cho Table / Data List.
+- [x] Đã có MDX docs cho Table / Data List.
 - [ ] Chưa hoàn thiện wrapper Ant Design cho tất cả component.
 - [ ] Chưa có MDX docs cho toàn bộ component.
 - [ ] Chưa có Chromatic hoặc visual regression workflow.
@@ -113,6 +134,25 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 - API: `variant`, `size`, `asChild`, `loading`, `leftIcon`, `rightIcon`, `block`.
 - Check: disabled và loading không trigger thao tác; icon và text căn giữa; focus visible rõ.
 
+### 1.1. [x] Loading
+
+- [x] Đã implement component `Loading` dùng chung.
+- [x] Mặc định `Loading` chỉ hiển thị icon xoay, không hiển thị chữ.
+- [x] Đã hỗ trợ variant `inline` và `block`.
+- [x] Đã hỗ trợ size `sm`, `md`, `lg`.
+- [x] Đã hỗ trợ tone `primary`, `neutral`, `inverse`, `danger`.
+- [x] Đã dùng `Loading` trong `Button` thay cho spinner mặc định của AntD.
+- [x] Đã dùng `Loading` trong `IconButton` khi nút icon đang xử lý.
+- [x] Đã dùng `Loading` làm indicator cho AntD Table/List trong `DataTable` và `DataList`.
+- [x] Đã có Storybook stories: playground, sizes, tones, block.
+- [x] Đã có MDX docs cho Loading.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [ ] Chưa có visual regression cho Loading.
+- Công nghệ: React, TypeScript, CSS animation, AntD loading indicator slot.
+- API: `variant`, `size`, `tone`, `label`, `className`.
+- Check: loading có accessible status; spinner không làm nút nhảy layout; tone primary dùng được trên nền orange với text đen; block loading chỉ hiện icon xoay và đủ rõ trong panel/table.
+
 ### 2. [ ] IconButton
 
 - [x] Đã implement wrapper dùng `Button` và AntD Tooltip.
@@ -180,23 +220,79 @@ Tài liệu này định nghĩa thứ tự xây dựng component dùng chung cho
 
 ### 6. [ ] Alert
 
-- [ ] Chưa implement.
+- [x] Đã implement wrapper dùng AntD Alert.
+- [x] Đã hỗ trợ type `info`, `success`, `warning`, `error`.
+- [x] Đã hỗ trợ variant `soft`, `outline`, `filled`.
+- [x] Đã hỗ trợ `title`, `description`, `children`, `showIcon`, `closable`, `action`.
+- [x] Đã tự set role: `warning`/`error` dùng `alert`, `info`/`success` dùng `status`.
+- [x] Đã thêm AntD theme token cho Alert radius.
+- [x] Đã có Storybook stories: playground, types, variants, closable, with action, form error, filled set.
+- [x] Đã có MDX docs cho type, variant và accessibility role.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [ ] Chưa có visual regression cho Alert.
 - Công nghệ: AntD Alert, React, TypeScript.
+- API: `type`, `variant`, `title`, `description`, `children`, `showIcon`, `closable`, `action`.
+- Check: type truyền đúng màu; warning/error đủ nổi bật; role accessibility đúng; action không làm vỡ layout.
 
 ### 7. [ ] Modal / Dialog
 
-- [ ] Chưa implement.
+- [x] Đã implement wrapper dùng AntD Modal.
+- [x] Đã export alias `Dialog` cho flow xác nhận hoặc nội dung dạng dialog.
+- [x] Đã hỗ trợ `open`, `onOpenChange`, `title`, `description`, `children`.
+- [x] Đã hỗ trợ footer mặc định qua `showFooter`, `confirmText`, `cancelText`, `confirmLoading`.
+- [x] Đã hỗ trợ `variant="danger"` để confirm action dùng button đỏ cảnh báo.
+- [x] Đã hỗ trợ custom `footer`.
+- [x] Đã thêm AntD theme token cho Modal radius/background/title.
+- [x] Đã có Storybook stories: basic, confirmation, danger dialog, with form, custom footer, with alert.
+- [x] Đã có MDX docs cho API chính và các tình huống dùng.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [ ] Chưa có visual regression cho Modal/Dialog.
 - Công nghệ: AntD Modal hoặc Radix Dialog khi cần control accessibility chi tiết.
+- API: `open`, `onOpenChange`, `title`, `description`, `children`, `showFooter`, `confirmText`, `cancelText`, `confirmLoading`, `variant`, `footer`.
+- Check: focus trap/escape/mask close theo AntD; danger dialog không cho đóng nhầm khi cần `maskClosable={false}`; footer không vỡ layout; title/description hiển thị rõ.
 
 ### 8. [ ] Tabs
 
-- [ ] Chưa implement.
+- [x] Đã implement wrapper dùng AntD Tabs.
+- [x] Đã hỗ trợ controlled mode qua `value` và `onValueChange`.
+- [x] Đã hỗ trợ uncontrolled mode qua `defaultValue`.
+- [x] Đã hỗ trợ `items` gồm `key`, `label`, `children`, `icon`, `disabled`.
+- [x] Đã hỗ trợ variant `line`, `pills`, `boxed`.
+- [x] Đã hỗ trợ size `small`, `middle`, `large` và placement như `top`, `left`.
+- [x] Đã thêm CSS component layer cho `sb-tabs--line`, `sb-tabs--pills`, `sb-tabs--boxed`.
+- [x] Đã có Storybook stories: playground, variants, sizes, with icons, controlled, disabled tab, vertical.
+- [x] Đã có MDX docs cho variants và API chính.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [ ] Chưa có visual regression cho Tabs.
 - Công nghệ: AntD Tabs, React, TypeScript.
+- API: `items`, `value`, `defaultValue`, `onValueChange`, `variant`, `size`, `placement`.
+- Check: keyboard navigation theo AntD; active state rõ; disabled tab không đổi tab; layout line/pills/boxed không làm nhảy nội dung.
 
 ### 9. [ ] Table / Data List
 
-- [ ] Chưa implement.
+- [x] Đã implement wrapper `DataTable` dùng AntD Table.
+- [x] Đã implement wrapper `DataList` dùng AntD List.
+- [x] Đã hỗ trợ `data`, `columns`, `rowKey`, `pagination`, `loading`, `emptyText`.
+- [x] Đã hỗ trợ density `compact`, `comfortable`, `spacious` cho Table.
+- [x] Đã set scroll ngang mặc định để table không vỡ layout trên màn nhỏ.
+- [x] Đã thêm empty state dùng AntD `Empty`.
+- [x] Đã thêm AntD theme token cho Table.
+- [x] Đã thêm CSS component layer cho `sb-data-table` và `sb-data-list`.
+- [x] Đã có Storybook stories: playground, density, pagination, empty state, loading state, data list cards.
+- [x] Đã có MDX docs cho Table / Data List.
+- [x] Đã pass typecheck `packages/ui`.
+- [x] Đã pass lint `packages/ui`.
+- [x] Đã pass typecheck `candidate-web`.
+- [x] Đã pass build Storybook cho `packages/ui`.
+- [x] Đã dùng `Loading` chung làm indicator cho Table/List.
+- [ ] Chưa tích hợp TanStack Query hoặc SWR vì chưa có API/màn dữ liệu cụ thể.
+- [ ] Chưa có visual regression cho Table / Data List.
 - Công nghệ: AntD Table, TanStack Query / SWR cho server state.
+- API: `data`, `columns`, `rowKey`, `density`, `pagination`, `loading`, `emptyText`, `items`, `getKey`, `renderItem`.
+- Check: row key ổn định; empty/loading hiển thị rõ; table có scroll ngang khi nhiều cột; list item không làm vỡ layout mobile; pagination nhận state từ app khi dùng dữ liệu server.
 
 ## Checklist Khi Hoàn Tất Một Component
 

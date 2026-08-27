@@ -1,0 +1,56 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as AlertStories from "./Alert.stories";
+
+<Meta of={AlertStories} />
+
+# Alert
+
+`Alert` là wrapper cho Ant Design Alert, dùng để hiển thị thông báo trạng thái, cảnh báo, lỗi hoặc thông tin cần người dùng chú ý.
+
+## Type
+
+- `info`: thông tin trung tính.
+- `success`: thao tác thành công.
+- `warning`: trạng thái cần chú ý.
+- `error`: lỗi hoặc vấn đề cần xử lý.
+
+## Variant
+
+- `soft`: nền nhẹ, phù hợp trong form hoặc page content.
+- `outline`: viền rõ, ít chiếm thị giác.
+- `filled`: nền đặc, dùng cho thông báo quan trọng.
+
+`warning` và `error` mặc định dùng `role="alert"`. `info` và `success` mặc định dùng `role="status"`.
+
+## Playground
+
+<Canvas of={AlertStories.Playground} />
+
+## Types
+
+<Canvas of={AlertStories.Types} />
+
+## Variants
+
+<Canvas of={AlertStories.Variants} />
+
+## Closable
+
+<Canvas of={AlertStories.Closable} />
+
+## With Action
+
+<Canvas of={AlertStories.WithAction} />
+
+## Form Error
+
+<Canvas of={AlertStories.FormError} />
+
+## Filled Set
+
+<Canvas of={AlertStories.FilledSet} />
+
+## Props
+
+<Controls of={AlertStories.Playground} />

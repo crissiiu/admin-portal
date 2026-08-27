@@ -28,6 +28,7 @@ export function IconButton({
   className,
   icon,
   label,
+  loading = false,
   size = "md",
   style,
   tooltip = label,
@@ -38,14 +39,17 @@ export function IconButton({
     <Button
       aria-label={label}
       className={cn(iconButtonSizes[size], className)}
+      loading={loading}
       size={size}
       style={style}
       variant={variant}
       {...props}
     >
-      <span aria-hidden="true" className="inline-flex shrink-0 items-center justify-center">
-        {icon}
-      </span>
+      {loading ? null : (
+        <span aria-hidden="true" className="inline-flex shrink-0 items-center justify-center">
+          {icon}
+        </span>
+      )}
     </Button>
   );
 

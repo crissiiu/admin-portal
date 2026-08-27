@@ -172,6 +172,12 @@ corepack pnpm --filter @job-portal/user-service typecheck
 corepack pnpm --filter @job-portal/job-service typecheck
 ```
 
+Cách dùng Story Book để xem UI:
+
+```bash
+corepack pnpm --filter @job-portal/ui run storybook
+```
+
 ## Cấu Trúc Chính
 
 - `apps/*`: frontend apps.

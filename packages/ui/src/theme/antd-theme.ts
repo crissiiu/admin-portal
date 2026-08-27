@@ -33,6 +33,9 @@ const baseToken = {
 } satisfies ThemeConfig["token"];
 
 const componentTokens = {
+  Alert: {
+    borderRadiusLG: Number.parseInt(radii.md, 10)
+  },
   Button: {
     borderRadius: Number.parseInt(radii.md, 10),
     colorPrimary: colors.orangeGradientEnd,
@@ -52,10 +55,23 @@ const componentTokens = {
     borderRadius: Number.parseInt(radii.md, 10)
   },
   Modal: {
-    borderRadiusLG: Number.parseInt(radii.md, 10)
+    borderRadiusLG: Number.parseInt(radii.md, 10),
+    contentBg: colors.surface,
+    footerBg: colors.surface,
+    headerBg: colors.surface,
+    titleColor: colors.foreground
   },
   Select: {
     borderRadius: Number.parseInt(radii.md, 10)
+  },
+  Table: {
+    borderColor: colors.border,
+    borderRadius: Number.parseInt(radii.md, 10),
+    cellPaddingBlock: Number.parseInt(spacing.md, 10),
+    cellPaddingInline: Number.parseInt(spacing.lg, 10),
+    headerBg: colors.background,
+    headerColor: colors.foreground,
+    rowHoverBg: "rgb(252 185 0 / 0.08)"
   },
   Tabs: {
     itemSelectedColor: colors.brandBlue
