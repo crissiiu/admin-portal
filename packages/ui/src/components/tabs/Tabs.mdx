@@ -1,0 +1,57 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as TabsStories from "./Tabs.stories";
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+`Tabs` là wrapper cho Ant Design Tabs, dùng để chuyển giữa các nhóm nội dung cùng cấp trong một màn hình. Component hỗ trợ controlled và uncontrolled state qua `value`, `defaultValue`, `onValueChange`.
+
+## Variants
+
+- `line`: tab line tiêu chuẩn, phù hợp nội dung chính.
+- `pills`: tab dạng segmented control, dùng tốt cho filter hoặc chế độ xem.
+- `boxed`: tab dạng card/boxed, phù hợp panel có ranh giới rõ.
+
+## API Chính
+
+- `items`: danh sách tab gồm `key`, `label`, `children`, `icon`, `disabled`.
+- `value`: active tab ở controlled mode.
+- `defaultValue`: active tab ban đầu ở uncontrolled mode.
+- `onValueChange`: callback khi đổi tab.
+- `variant`: `line`, `pills`, `boxed`.
+- `size`: `small`, `middle`, `large`.
+- `placement`: vị trí tab theo AntD, ví dụ `top`, `left`.
+
+## Playground
+
+<Canvas of={TabsStories.Playground} />
+
+## Variants
+
+<Canvas of={TabsStories.Variants} />
+
+## Sizes
+
+<Canvas of={TabsStories.Sizes} />
+
+## With Icons
+
+<Canvas of={TabsStories.WithIcons} />
+
+## Controlled
+
+<Canvas of={TabsStories.Controlled} />
+
+## Disabled Tab
+
+<Canvas of={TabsStories.DisabledTab} />
+
+## Vertical
+
+<Canvas of={TabsStories.Vertical} />
+
+## Props
+
+<Controls of={TabsStories.Playground} />

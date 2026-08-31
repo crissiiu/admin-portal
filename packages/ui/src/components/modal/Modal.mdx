@@ -1,0 +1,47 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as ModalStories from "./Modal.stories";
+
+<Meta of={ModalStories} />
+
+# Modal / Dialog
+
+`Modal` là wrapper cho Ant Design Modal, dùng cho nội dung cần người dùng tập trung xử lý. `Dialog` được export như alias của `Modal` để có thể dùng tên ngữ nghĩa hơn ở các flow xác nhận.
+
+## API Chính
+
+- `open`: trạng thái mở modal.
+- `onOpenChange`: callback khi modal cần đóng hoặc đổi trạng thái.
+- `title`, `description`, `children`: nội dung chính.
+- `showFooter`: bật footer mặc định gồm cancel và confirm.
+- `confirmText`, `cancelText`, `confirmLoading`: cấu hình footer mặc định.
+- `variant="danger"`: dùng cho dialog thao tác rủi ro, nút confirm chuyển sang đỏ.
+- `footer`: truyền custom footer khi cần layout hành động riêng.
+
+## Basic
+
+<Canvas of={ModalStories.Basic} />
+
+## Confirmation
+
+<Canvas of={ModalStories.Confirmation} />
+
+## Danger Dialog
+
+<Canvas of={ModalStories.DangerDialog} />
+
+## With Form
+
+<Canvas of={ModalStories.WithForm} />
+
+## Custom Footer
+
+<Canvas of={ModalStories.CustomFooter} />
+
+## With Alert
+
+<Canvas of={ModalStories.WithAlert} />
+
+## Props
+
+<Controls of={ModalStories.Basic} />

@@ -1,8 +1,9 @@
-import { redirect } from "next/navigation";
-
-import { routes } from "@/config/routes";
+import { Button } from "@job-portal/ui";
 
 export default function HomePage() {
-  redirect(routes.jobs());
+  return (
+    <main className="min-h-screen">
+      <Button variant={"primary"}>Nguyễn Thanh Siêu</Button>
+    </main>
+  );
 }
-

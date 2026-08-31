@@ -1,0 +1,35 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+
+import * as DataTableStories from "./DataTable.stories";
+
+<Meta of={DataTableStories} />
+
+# Table / Data List
+
+`DataTable` và `DataList` là wrapper dùng Ant Design `Table` và `List` cho các màn hiển thị dữ liệu lặp lại.
+
+- Dùng `DataTable` khi cần so sánh nhiều cột, lọc, phân trang hoặc thao tác theo dòng.
+- Dùng `DataList` khi nội dung thiên về mobile, card list hoặc dữ liệu ít cột.
+- Server state như loading, refetch, pagination từ API nên quản lý ở app bằng TanStack Query hoặc SWR rồi truyền vào component.
+
+## DataTable
+
+<Canvas of={DataTableStories.Playground} />
+
+## Density
+
+<Canvas of={DataTableStories.Densities} />
+
+## Pagination
+
+<Canvas of={DataTableStories.WithPagination} />
+
+## Empty Và Loading
+
+<Canvas of={DataTableStories.EmptyState} />
+
+<Canvas of={DataTableStories.LoadingState} />
+
+## DataList
+
+<Canvas of={DataTableStories.DataListCards} />

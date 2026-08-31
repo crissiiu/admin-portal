@@ -1,0 +1,73 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as ButtonStories from "./Button.stories";
+
+<Meta of={ButtonStories} />
+
+# Button
+
+`Button` là action component mặc định của `@job-portal/ui`. Component này dùng Ant Design `Button` làm nền, giữ API design system gồm `variant`, `size`, `loading`, `leftIcon`, `rightIcon` và `asChild`.
+
+## Màu Chuẩn
+
+- `variant="primary"` dùng nền `linear-gradient(180deg, #FCB900 0%, #FF6900 100%)`, nhạt ở trên và đậm ở dưới.
+- Text của primary là màu đen `#111827`.
+- `#1068B4` được giữ làm màu blue phụ cho link, trạng thái hoặc điểm nhấn không phải CTA chính.
+
+## Khi Nào Dùng
+
+- Dùng `primary` cho hành động chính của màn hình hoặc form.
+- Dùng `secondary` cho hành động phụ có nền trắng.
+- Dùng `outline` khi cần nút có viền nhưng vẫn nổi bật.
+- Dùng `ghost` trong toolbar hoặc vùng UI đã có nền rõ.
+- Dùng `danger` cho thao tác phá hủy hoặc rủi ro; màu nền luôn là đỏ cảnh báo.
+- Dùng `success` cho xác nhận hoàn tất.
+- Dùng `link` cho điều hướng nhẹ.
+
+## Playground
+
+<Canvas of={ButtonStories.Playground} />
+
+## Orange Primary
+
+<Canvas of={ButtonStories.OrangePrimary} />
+
+## App Download Primary
+
+<Canvas of={ButtonStories.AppDownloadPrimary} />
+
+## Variants
+
+<Canvas of={ButtonStories.AllVariants} />
+
+## Sizes
+
+<Canvas of={ButtonStories.Sizes} />
+
+## States
+
+<Canvas of={ButtonStories.States} />
+
+## Danger Warning
+
+<Canvas of={ButtonStories.DangerWarning} />
+
+## Icons
+
+<Canvas of={ButtonStories.WithIcons} />
+
+## Full Width
+
+<Canvas of={ButtonStories.FullWidth} />
+
+## As Child
+
+<Canvas of={ButtonStories.AsChild} />
+
+## Trên Nền Orange
+
+<Canvas of={ButtonStories.OnOrangeSurface} />
+
+## Props
+
+<Controls of={ButtonStories.Playground} />

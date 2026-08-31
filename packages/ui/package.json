@@ -8,7 +8,9 @@
     "./styles.css": "./src/styles/styles.css"
   },
   "dependencies": {
+    "@job-portal/design-tokens": "workspace:*",
     "@radix-ui/react-slot": "1.3.3",
+    "antd": "^6.6.1",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "lucide-react": "1.33.0",
@@ -21,13 +23,19 @@
   "devDependencies": {
     "@job-portal/eslint-config": "workspace:*",
     "@job-portal/typescript-config": "workspace:*",
+    "@storybook/addon-a11y": "^10.5.10",
+    "@storybook/addon-docs": "^10.5.10",
+    "@storybook/react-vite": "^10.5.10",
     "@types/react": "19.2.18",
     "eslint": "9.39.5",
+    "storybook": "^10.5.10",
     "typescript": "6.0.3"
   },
   "scripts": {
     "build": "tsc --noEmit",
+    "build-storybook": "storybook build",
     "lint": "eslint .",
+    "storybook": "storybook dev --port 6006",
     "test": "echo \"No ui tests yet\"",
     "typecheck": "tsc --noEmit"
   }

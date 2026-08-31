@@ -1,0 +1,34 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as LoadingStories from "./Loading.stories";
+
+<Meta of={LoadingStories} />
+
+# Loading
+
+`Loading` là icon xoay dùng chung cho trạng thái đang xử lý trong `Button`, `IconButton`, `DataTable`, `DataList` và các khu vực nội dung.
+
+- Dùng `variant="inline"` trong button, toolbar hoặc dòng text.
+- Dùng `variant="block"` khi một vùng dữ liệu hoặc panel đang tải.
+- Dùng `tone="primary"` trên nền orange primary vì spinner cần giữ màu đen theo chuẩn app.
+- Mặc định chỉ hiển thị icon xoay, không hiển thị chữ loading.
+
+## Playground
+
+<Canvas of={LoadingStories.Playground} />
+
+## Sizes
+
+<Canvas of={LoadingStories.Sizes} />
+
+## Tones
+
+<Canvas of={LoadingStories.Tones} />
+
+## Block
+
+<Canvas of={LoadingStories.Block} />
+
+## Props
+
+<Controls of={LoadingStories.Playground} />

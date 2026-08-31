@@ -9,6 +9,8 @@ build/
 **/build/
 **/.next/
 out/
+storybook-static/
+**/storybook-static/
 
 # Cache
 .turbo/

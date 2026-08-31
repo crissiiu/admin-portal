@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as CardStories from "./Card.stories";
+
+<Meta of={CardStories} />
+
+# Card
+
+`Card` là wrapper cho Ant Design Card, dùng để nhóm một đơn vị nội dung độc lập như metric, summary, job item hoặc panel có action. Component giữ radius tối đa 8px theo design system và hỗ trợ các section `CardHeader`, `CardContent`, `CardFooter`.
+
+`FeatureCard` là kiểu card truyền thông giống layout ảnh trái, nội dung phải, phù hợp cho section giới thiệu dịch vụ hoặc nhóm tính năng nổi bật.
+
+## Variants
+
+- `default`: card nền trắng, viền nhẹ.
+- `outlined`: card nền trong suốt, viền nhẹ.
+- `elevated`: card có shadow để nổi trên nền.
+- `accent`: card có nền orange nhẹ cho nội dung nổi bật.
+- `interactive`: card có hover state cho item có thể click.
+
+## Playground
+
+<Canvas of={CardStories.Playground} />
+
+## Feature Media Card
+
+<Canvas of={CardStories.FeatureMediaCard} />
+
+## Variants
+
+<Canvas of={CardStories.Variants} />
+
+## Metric Card
+
+<Canvas of={CardStories.MetricCard} />
+
+## Job Card
+
+<Canvas of={CardStories.JobCard} />
+
+## Accent Card
+
+<Canvas of={CardStories.AccentCard} />
+
+## With Actions
+
+<Canvas of={CardStories.WithActions} />
+
+## Props
+
+<Controls of={CardStories.Playground} />

@@ -1,0 +1,43 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+
+import * as IconButtonStories from "./IconButton.stories";
+
+<Meta of={IconButtonStories} />
+
+# IconButton
+
+`IconButton` là nút chỉ hiển thị icon, dùng cho toolbar, quick action, menu action hoặc các vùng UI hẹp. Component này dùng chung nền `Button` để giữ variant, size, loading, disabled và theme của design system.
+
+## Accessibility
+
+- Luôn truyền `label` để tạo `aria-label`.
+- `tooltip` mặc định dùng cùng giá trị với `label`.
+- Chỉ tắt tooltip bằng `tooltip={null}` khi icon đã có ngữ cảnh đủ rõ.
+
+## Playground
+
+<Canvas of={IconButtonStories.Playground} />
+
+## Variants
+
+<Canvas of={IconButtonStories.AllVariants} />
+
+## Sizes
+
+<Canvas of={IconButtonStories.Sizes} />
+
+## States
+
+<Canvas of={IconButtonStories.States} />
+
+## Toolbar
+
+<Canvas of={IconButtonStories.Toolbar} />
+
+## Without Tooltip
+
+<Canvas of={IconButtonStories.WithoutTooltip} />
+
+## Props
+
+<Controls of={IconButtonStories.Playground} />
